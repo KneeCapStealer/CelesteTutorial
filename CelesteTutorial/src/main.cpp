@@ -8,6 +8,7 @@
 #include "win32_platform.cpp"
 #endif
 
+#include "gl_renderer.h"
 
 
 int main()

@@ -73,4 +73,20 @@ void platform_update_window()
 	}
 }
 
+void* platform_load_gl_function(const char* fnName)
+{
+	PROC proc = wglGetProcAddress(fnName);
+	if (!proc)
+	{
+		static HMODULE openglDLL = LoadLibrary(L"opnegl32.dll");
+		proc = GetProcAddress(openglDLL, fnName);
 
+		if (!proc)
+		{
+			SM_ASSERT(false, "Failed to load glCreateProgram");
+			return nullptr;
+		}
+	}
+
+	return reinterpret_cast<void*>(proc);
+}
