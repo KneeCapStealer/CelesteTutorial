@@ -32,6 +32,8 @@ static void APIENTRY gl_debug_callback(GLenum source, GLenum type, GLuint id, GL
 
 bool gl_init(BumpAllocator* transientStorage);
 
+void gl_render();
+
 // #############################################################################
 //                           OpenGL Function Pointers
 // #############################################################################

@@ -168,6 +168,7 @@
   <ItemGroup>
     <ClInclude Include="src\engine_lib.h" />
     <ClInclude Include="src\gl_renderer.h" />
+    <ClInclude Include="src\input.h" />
     <ClInclude Include="src\platform.h" />
     <ClInclude Include="src\win32_platform.h" />
     <ClInclude Include="third_party\glcorearb.h" />

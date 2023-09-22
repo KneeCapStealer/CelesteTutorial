@@ -7,6 +7,7 @@
 #include "engine_lib.h"
 #include "platform.h"
 #include "gl_renderer.h"
+#include "input.h"
 
 // If the platform is windows
 #ifdef _WIN32
@@ -18,8 +19,10 @@
 int main()
 {
 	BumpAllocator transientStorage = make_bump_allocator(MB(50));
+	input.screenSizeX = 1200;
+	input.screenSizeY = 720;
 
-	platform_create_window(1200, 720, L"Game");
+	platform_create_window(input.screenSizeX, input.screenSizeY, L"Game");
 
 	gl_init(&transientStorage);
 
@@ -27,6 +30,7 @@ int main()
 	{
 		//update
 		platform_update_window();
+		gl_render();
 	}
 
 	return 0;
