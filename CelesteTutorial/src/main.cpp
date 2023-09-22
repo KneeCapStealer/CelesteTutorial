@@ -1,14 +1,17 @@
+// Third party includes
+#define APIENTRY // make sure glcorearb.h doesn't include windows.h
+#include <glcorearb.h>
+
+// Src code includes
 #include "engine_lib.h"
 #include "platform.h"
+#include "gl_renderer.h"
 
-// ###############################################################
-//						  Windows Platform
-// ###############################################################
+// If the platform is windows
 #ifdef _WIN32
 #include "win32_platform.h"
 #endif
 
-#include "gl_renderer.h"
 
 
 int main()
