@@ -167,8 +167,7 @@ inline long get_file_size(const char* filePath)
 {
 	SM_ASSERT(filePath, "No filepath supplied!");
 
-	FILE* file{};
-	fopen_s(&file, filePath, "rb");
+	FILE* file = fopen(filePath, "rb");
 	if (!file)
 	{
 		SM_ERROR("Failed opening file: %s", filePath);
@@ -190,8 +189,7 @@ inline void read_file(const char* filePath, int* fileSize, char* buffer)
 	SM_ASSERT(buffer, "No buffer supplied!");
 
 	*fileSize = 0;
-	FILE* file{};
-	fopen_s(&file, filePath, "rb");
+	FILE* file = fopen(filePath, "rb");
 	if (!file)
 	{
 		SM_ERROR("Failed opening file: %s", filePath);
@@ -227,8 +225,7 @@ inline void write_file(const char* filePath, const char* buffer, const int size)
 	SM_ASSERT(filePath, "No filePath supplied!");
 	SM_ASSERT(buffer, "No buffer supplied!");
 
-	FILE* file{};
-	fopen_s(&file, filePath, "wb");
+	FILE* file = fopen(filePath, "wb");
 	if (!file)
 	{
 		SM_ERROR("Failed opening file: %s", filePath);
@@ -248,8 +245,7 @@ inline bool copy_file(const char* filePath, const char* outFilePath, void* buffe
 	int fileSize = 0;
 	read_file(filePath, &fileSize, static_cast<char*>(buffer));
 
-	FILE* file{};
-	fopen_s(&file, outFilePath, "wb");
+	FILE* file = fopen(filePath, "wb");
 	if (!file)
 	{
 		SM_ERROR("Couldnt open file: %s", outFilePath);
