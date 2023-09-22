@@ -154,8 +154,7 @@ inline bool file_exists(const char* filePath)
 {
 	SM_ASSERT(filePath, "No filepath supplied!");
 
-	FILE* file{};
-	fopen_s(&file, filePath, "rb");
+	FILE* file = fopen(filePath, "rb");
 	if (!file)
 		return false;
 
