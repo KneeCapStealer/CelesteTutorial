@@ -5,7 +5,7 @@
 //						  Windows Platform
 // ###############################################################
 #ifdef _WIN32
-#include "win32_platform.cpp"
+#include "win32_platform.h"
 #endif
 
 #include "gl_renderer.h"
@@ -18,11 +18,6 @@ int main()
 	{
 		//update
 		platform_update_window();
-
-		SM_TRACE("test");
-		SM_WARN("OH NO");
-		SM_ERROR("FCK");
-		SM_ASSERT(false, "Damn, this really asserted man");
 	}
 
 	return 0;

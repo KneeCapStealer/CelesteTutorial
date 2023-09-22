@@ -44,5 +44,8 @@
     <ClInclude Include="src\platform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\win32_platform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -67,10 +67,10 @@ void _log(const char* prefix, const char* msg, const TextColor textColor, Args..
 	};
 
 	char formatBuffer[8192]{};
-	sprintf_s(formatBuffer, "%s %s %s \033[0m", textColorTable[textColor], prefix, msg);
+	sprintf(formatBuffer, "%s %s %s \033[0m", textColorTable[textColor], prefix, msg);
 
 	char textBuffer[8192]{};
-	sprintf_s(textBuffer, formatBuffer, args...);
+	sprintf(textBuffer, formatBuffer, args...);
 
 	puts(textBuffer);
 }
@@ -124,7 +124,7 @@ inline void* bump_alloc(BumpAllocator* bumpAllocator, const size_t size)
 	size_t alignedSize = size + 7 & ~7;
 	if (bumpAllocator->used + alignedSize <= bumpAllocator->capacity)
 	{
-		result = bumpAllocator->memory + bumpAllocator->used;
+		result = static_cast<char*>(bumpAllocator->memory) + bumpAllocator->used;
 		bumpAllocator->used += alignedSize;
 	}
 	else

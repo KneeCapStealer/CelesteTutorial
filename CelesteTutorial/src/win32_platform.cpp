@@ -1,19 +1,8 @@
 
-
 #include "platform.h"
 #include "engine_lib.h"
 
-#define WIN32_LEAN_AND_MEAN
-#define NOMINMAX
-
-#include <Windows.h>
-
-
-// ###############################################################
-//						  Windows Globals
-// ###############################################################
-
-static HWND window;
+#include "win32_platform.h"
 
 // ###############################################################
 //						  Windows Implementations
