@@ -17,6 +17,11 @@
 #elif __APPLE__
 #define DebugBreak() __builtin_trap()
 #endif
+
+#define BIT(x) 1 << (x)
+#define KB(x) (static_cast<unsigned long long>(1024 * (x)))
+#define MB(x) (static_cast<unsigned long long>(1024 * KB(x)))
+#define GB(x) (static_cast<unsigned long long>(1024 * MB(x)))
 // ###############################################################
 //							  Logging
 // ###############################################################

@@ -21,6 +21,9 @@
     <ClCompile Include="src\win32_platform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\gl_renderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\engine_lib.h">
@@ -47,5 +50,9 @@
     <ClInclude Include="src\win32_platform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\shaders\quad.vert" />
+    <None Include="assets\shaders\quad.frag" />
   </ItemGroup>
 </Project>

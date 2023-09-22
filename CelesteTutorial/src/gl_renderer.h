@@ -1,6 +1,36 @@
 #pragma once
 
+#include "engine_lib.h"
+
+#define APIENTRY // make sure glcorearb.h doesn't include windows.h
+#define GL_GLEXT_PROTOTYPES
 #include "glcorearb.h"
+#include "platform.h"
+
+// ###############################################################
+//						  OpenGL Structs
+// ###############################################################
+
+struct GLContext
+{
+    GLuint programID;
+};
+
+// ###############################################################
+//						  OpenGL Globals 
+// ###############################################################
+
+static GLContext glContext;
+
+// #############################################################################
+//                              OpenGL Functions
+// #############################################################################
+void load_gl_functions();
+
+static void APIENTRY gl_debug_callback(GLenum source, GLenum type, GLuint id, GLenum severity,
+    GLsizei length, const GLchar* message, const void* user);
+
+bool gl_init(BumpAllocator* transientStorage);
 
 // #############################################################################
 //                           OpenGL Function Pointers
@@ -61,7 +91,7 @@ static PFNGLGENERATEMIPMAPPROC glGenerateMipmap_ptr;
 static PFNGLDEBUGMESSAGECALLBACKPROC glDebugMessageCallback_ptr;
 
 
-void load_gl_functions()
+inline void load_gl_functions()
 {
     // Load OpenGL Functions from the Operating System / Graphics Card
     glCreateProgram_ptr = (PFNGLCREATEPROGRAMPROC)platform_load_gl_function("glCreateProgram");

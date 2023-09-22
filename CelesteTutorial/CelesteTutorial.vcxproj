@@ -161,6 +161,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\gl_renderer.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\win32_platform.cpp" />
   </ItemGroup>
@@ -173,6 +174,10 @@
     <ClInclude Include="third_party\glext.h" />
     <ClInclude Include="third_party\glxext.h" />
     <ClInclude Include="third_party\wglext.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\shaders\quad.frag" />
+    <None Include="assets\shaders\quad.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
