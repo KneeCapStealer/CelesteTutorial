@@ -6,8 +6,12 @@
 #include "platform.h"
 #include "engine_lib.h"
 #include "win32_platform.h"
+#include "input.h"
 
-
+// ###############################################################
+//						  Windows Globals
+// ###############################################################
+HDC deviceContext;
 
 // ###############################################################
 //						  Windows Implementations
@@ -21,6 +25,16 @@ LRESULT CALLBACK windows_window_callback(const HWND window, const UINT msg, cons
 	case WM_CLOSE:
 		running = false;
 		break;
+
+	case WM_SIZE:
+		{
+			RECT rect{};
+			GetClientRect(window, &rect);
+
+			input.screenSizeX = rect.right - rect.left;
+			input.screenSizeY = rect.bottom - rect.top;
+			break;
+		}
 
 	default:
 		result = DefWindowProc(window, msg, wParam, lParam);
@@ -143,7 +157,7 @@ bool platform_create_window(int width, int height, const wchar_t* title)
 			return false;
 		}
 
-		HDC deviceContext = GetDC(window);
+		deviceContext = GetDC(window);
 		if (!deviceContext)
 		{
 			SM_ASSERT(false, "Failed to get HDC");
@@ -240,4 +254,9 @@ void* platform_load_gl_function(const char* fnName)
 	}
 
 	return reinterpret_cast<void*>(proc);
+}
+
+void platform_swap_buffers()
+{
+	SwapBuffers(deviceContext);
 }
