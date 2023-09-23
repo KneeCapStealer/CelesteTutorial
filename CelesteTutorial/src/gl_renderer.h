@@ -20,7 +20,7 @@ struct GLContext
 //						  OpenGL Globals 
 // ###############################################################
 
-static GLContext glContext;
+inline GLContext glContext;
 
 // #############################################################################
 //                              OpenGL Functions

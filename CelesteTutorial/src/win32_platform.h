@@ -9,4 +9,4 @@
 //						  Windows Globals
 // ###############################################################
 
-static HWND window;
+inline HWND window;
