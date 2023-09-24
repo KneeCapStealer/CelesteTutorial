@@ -174,11 +174,16 @@
     <ClInclude Include="third_party\glcorearb.h" />
     <ClInclude Include="third_party\glext.h" />
     <ClInclude Include="third_party\glxext.h" />
+    <ClInclude Include="third_party\stb_image.h" />
     <ClInclude Include="third_party\wglext.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\quad.frag" />
     <None Include="assets\shaders\quad.vert" />
+    <None Include="assets\textures\TEXTURE_ATLAS.aseprite" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\textures\TEXTURE_ATLAS.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
