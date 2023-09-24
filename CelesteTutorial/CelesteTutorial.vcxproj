@@ -161,15 +161,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\game.cpp" />
     <ClCompile Include="src\gl_renderer.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\win32_platform.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\assets.h" />
     <ClInclude Include="src\engine_lib.h" />
+    <ClInclude Include="src\game.h" />
     <ClInclude Include="src\gl_renderer.h" />
     <ClInclude Include="src\input.h" />
     <ClInclude Include="src\platform.h" />
+    <ClInclude Include="src\render_interface.h" />
     <ClInclude Include="src\win32_platform.h" />
     <ClInclude Include="third_party\glcorearb.h" />
     <ClInclude Include="third_party\glext.h" />

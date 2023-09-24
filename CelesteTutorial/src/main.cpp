@@ -4,10 +4,14 @@
 #include <glcorearb.h>
 
 // Src code includes
+#include <iostream>
+
 #include "engine_lib.h"
 #include "platform.h"
 #include "gl_renderer.h"
 #include "input.h"
+
+#include "game.h"
 
 // If the platform is windows
 #ifdef _WIN32
@@ -27,6 +31,7 @@ int main()
 	{
 		//update
 		platform_update_window();
+		update_game();
 		gl_render();
 
 		platform_swap_buffers();

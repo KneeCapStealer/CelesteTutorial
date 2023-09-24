@@ -4,8 +4,10 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
 
+#include "render_interface.h"
+
 static void APIENTRY gl_debug_callback(GLenum source, GLenum type, GLuint id, GLenum severity,
-	GLsizei length, const GLchar* message, const void* user)
+                                       GLsizei length, const GLchar* message, const void* user)
 {
 	if (severity == GL_DEBUG_SEVERITY_LOW ||
 		severity == GL_DEBUG_SEVERITY_MEDIUM ||
@@ -109,6 +111,18 @@ bool gl_init(BumpAllocator* transientStorage)
 		stbi_image_free(image);
 	}
 
+	// Transform Storage Buffer
+	glGenBuffers(1, &glContext.transformSBOID);
+	glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, glContext.transformSBOID);
+	glBufferData(GL_SHADER_STORAGE_BUFFER, sizeof(Transform) * MAX_TRANSFORMS,
+	             renderData.transforms, GL_DYNAMIC_DRAW);
+
+	// Uniforms
+	glContext.screenSizeID = glGetUniformLocation(glContext.programID, "screenSize");
+
+	glEnable(GL_FRAMEBUFFER_SRGB);
+	glDisable(GL_MULTISAMPLE);
+
 	// Enable Depth Testing
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_GREATER);
@@ -125,8 +139,19 @@ void gl_render()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glViewport(0, 0, input.screenSizeX, input.screenSizeY);
 
+	// Copy transform to the GPU
+	glBufferSubData(GL_SHADER_STORAGE_BUFFER, 0, sizeof(Transform) * renderData.transformCount,
+		renderData.transforms);
 
-	glDrawArrays(GL_TRIANGLES, 0, 6);
+	// Copy screen size to GPU
+	Vec2 screenSize = { static_cast<float>(input.screenSizeX), static_cast<float>(input.screenSizeY) };
+	glUniform2fv(glContext.screenSizeID, 1, &screenSize.x);
+
+
+	glDrawArraysInstanced(GL_TRIANGLES, 0, 6, renderData.transformCount);
+
+	// Reset for next frame
+	renderData.transformCount = 0;
 }
 
 GLuint glCreateProgram()

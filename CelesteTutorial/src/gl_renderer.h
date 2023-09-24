@@ -21,6 +21,8 @@ struct GLContext
 {
     GLuint programID;
     GLuint textureID;
+    GLuint transformSBOID;
+    GLuint screenSizeID;
 };
 
 // ###############################################################
